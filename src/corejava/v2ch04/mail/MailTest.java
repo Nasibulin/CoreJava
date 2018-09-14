@@ -18,7 +18,7 @@ public class MailTest
    public static void main(String[] args) throws MessagingException, IOException
    {
       Properties props = new Properties();
-      try (InputStream in = Files.newInputStream(Paths.get("mail", "mail.properties")))
+      try (InputStream in = Files.newInputStream(Paths.get("C:\\Users\\Nasibulin\\IdeaProjects\\CoreJava\\src\\corejava\\v2ch04\\mail", "mail.properties")))
       {
          props.load(in);
       }
@@ -35,8 +35,12 @@ public class MailTest
          builder.append("\n");
       }
       
-      Console console = System.console();
-      String password = new String(console.readPassword("Password: "));
+       Scanner in =  new Scanner(System.in);
+       System.out.println("Введите пароль:");
+       String password = in.nextLine();
+
+      // Console console = System.console();  //does not work and throws a NullPointerException because IDEA are using javaw.exe
+      //String password = new String(console.readPassword("Password: "));
       
       Session mailSession = Session.getDefaultInstance(props);
       // mailSession.setDebug(true);
